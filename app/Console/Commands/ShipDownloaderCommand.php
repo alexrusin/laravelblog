@@ -54,7 +54,7 @@ class ShipDownloaderCommand extends Command
 
         $url = "https://ssapi.shipstation.com/orders?createDateStart=";
         $url .= $timeBefore;
-        // $url .="2017-03-01 14:32:27";
+        //$url .="2017-03-01 14:32:27";
         $url .= "&createDateEnd=";
         $url .= $timeNow;
         //$url .="2017-03-01 15:32:27";
@@ -72,16 +72,21 @@ class ShipDownloaderCommand extends Command
                 foreach ($ordersArray['orders'] as $order) {
                     $this->insertOrder($order);
                 }
-                echo "saved orders: ".$ordersArray['total'];
+                $message = "saved orders: ".$ordersArray['total'];
+                $this->writeLog($timeNow, $message);
             } else if (array_key_exists("orders", $ordersArray) && empty($ordersArray["orders"])){
-                echo "there were no orders";            
+                $message = "there were no orders";
+                $this->writeLog($timeNow, $message);            
             } else {
                 $this->insertOrder($ordersArray);
+                $message = " one order has been saved";
+                $this->writeLog($timeNow, $message);
             }
 
                
         } else {
-            echo "error.  return is false";
+            $message = "error.  return is false";
+            $this->writeLog($timeNow, $message);
         }
     }
    /**
@@ -97,5 +102,18 @@ class ShipDownloaderCommand extends Command
         $dataOrder->order_json = json_encode($order);
         $dataOrder->save();
 
+    }
+
+    /**
+    * Create log file and write log messages to it
+    *
+    */
+    protected function writeLog($timestamp, $logmessage)
+    {
+        $logfile = fopen("shiplog.txt", "a");
+        $txt = $timestamp  . ": ";
+        $txt .= $logmessage . "\n";
+        fwrite($logfile, $txt);
+        fclose($logfile);
     }
 }
