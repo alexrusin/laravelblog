@@ -23,6 +23,20 @@ class ShipDownloaderCommand extends Command
      */
     protected $description = 'Download shipment information from ship station';
 
+    /**
+     * The key for Ship Station.
+     *
+     * @var string
+     */
+    protected $key;
+
+    /**
+     * The secret for Ship Station
+     *
+     * @var string
+     */
+    protected $secret;
+
     
 
     /**
@@ -32,6 +46,9 @@ class ShipDownloaderCommand extends Command
      */
     public function __construct()
     {
+        $this->key = env('SS_KEY');
+        $this->secret = env('SS_SECRET');
+
         parent::__construct();
     }
 
@@ -42,9 +59,10 @@ class ShipDownloaderCommand extends Command
      */
     public function handle()
     {
+        
         $reqObj = new Curl();
-        $reqObj->setKey('key');
-        $reqObj->setSecret('secret');
+        $reqObj->setKey($this->key);
+        $reqObj->setSecret($this->secret);
 
        
         $timeNow = Carbon::now();
@@ -63,7 +81,7 @@ class ShipDownloaderCommand extends Command
         //dd($urlString);
 
         $orders=$reqObj->get($urlString);
-        
+       
         if($orders != false){
 
             $ordersArray=json_decode($orders, true);
@@ -79,7 +97,7 @@ class ShipDownloaderCommand extends Command
                 $this->writeLog($timeNow, $message);            
             } else {
                 $this->insertOrder($ordersArray);
-                $message = " one order has been saved";
+                $message = "one order has been saved";
                 $this->writeLog($timeNow, $message);
             }
 
@@ -91,6 +109,7 @@ class ShipDownloaderCommand extends Command
     }
    /**
    * Create new order model and save to the databas 
+   *
    * @param Array $order
    * 
    * @return void
@@ -108,6 +127,7 @@ class ShipDownloaderCommand extends Command
 
     /**
     * Create log file and write log messages to it
+    *
     * @param \Carbon\Carbon $timestamp String $logmessage
     *
     * @return void
