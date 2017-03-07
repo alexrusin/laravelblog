@@ -43,8 +43,8 @@ class ShipDownloaderCommand extends Command
     public function handle()
     {
         $reqObj = new Curl();
-        $reqObj->setKey('aee799cca7d6432ea2ed7520794ae9f4');
-        $reqObj->setSecret('77ff82bf4c884ae081db03118909516e');
+        $reqObj->setKey('key');
+        $reqObj->setSecret('secret');
 
        
         $timeNow = Carbon::now();
