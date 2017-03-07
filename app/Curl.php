@@ -66,7 +66,10 @@ namespace App;
 
          $result = curl_exec($curl);
 
-         // todo create error exeption if result is false
+         // todo create function for reporting when result is false
+         // echo curl_getinfo($curl) . '<br/>';
+         //  echo curl_errno($curl) . '<br/>';
+         //  echo curl_error($curl) . '<br/>';
 
          curl_close($curl);
 

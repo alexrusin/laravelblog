@@ -91,7 +91,9 @@ class ShipDownloaderCommand extends Command
     }
    /**
    * Create new order model and save to the databas 
-   *
+   * @param Array $order
+   * 
+   * @return void
    **/
 
     protected function insertOrder($order){
@@ -106,7 +108,9 @@ class ShipDownloaderCommand extends Command
 
     /**
     * Create log file and write log messages to it
+    * @param \Carbon\Carbon $timestamp String $logmessage
     *
+    * @return void
     */
     protected function writeLog($timestamp, $logmessage)
     {
