@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Database\QueryException;
 use Carbon\Carbon;
 use App\Curl;
 use App\Order;
@@ -36,6 +37,8 @@ class ShipDownloaderCommand extends Command
      * @var string
      */
     protected $secret;
+
+   
 
     
 
@@ -81,6 +84,7 @@ class ShipDownloaderCommand extends Command
         //dd($urlString);
 
         $orders=$reqObj->get($urlString);
+              
        
         if($orders != false){
 
@@ -90,21 +94,21 @@ class ShipDownloaderCommand extends Command
                 foreach ($ordersArray['orders'] as $order) {
                     $this->insertOrder($order);
                 }
-                $message = "saved orders: ".$ordersArray['total'];
-                $this->writeLog($timeNow, $message);
+                $message = "Total processed orders: ".$ordersArray['total'];
+                $this->writeLog($message);
             } else if (array_key_exists("orders", $ordersArray) && empty($ordersArray["orders"])){
                 $message = "there were no orders";
-                $this->writeLog($timeNow, $message);            
+                $this->writeLog($message);            
             } else {
                 $this->insertOrder($ordersArray);
-                $message = "one order has been saved";
-                $this->writeLog($timeNow, $message);
+                $message = "Total processed orders: one";
+                $this->writeLog($message);
             }
 
                
         } else {
-            $message = "error.  return is false";
-            $this->writeLog($timeNow, $message);
+            $message = $reqObj->getCurlErr();
+            $this->writeLog($message);
         }
     }
    /**
@@ -117,12 +121,19 @@ class ShipDownloaderCommand extends Command
 
     protected function insertOrder($order){
         $dataOrder= new Order;
+        $dataOrder->ss_id=$order['orderId'];
         $dataOrder->order_number=$order['orderNumber'];
         $dataOrder->order_date=$order['orderDate'];
         $dataOrder->order_status=$order['orderStatus'];
         $dataOrder->order_json = json_encode($order);
-        $dataOrder->save();
+        try {
 
+            $dataOrder->save();
+        } catch(QueryException $e){
+            $message="Duplicate order with ss_id ".$order['orderId'] . " was skipped";
+            $this->writeLog($message);
+        }
+        
     }
 
     /**
@@ -132,10 +143,10 @@ class ShipDownloaderCommand extends Command
     *
     * @return void
     */
-    protected function writeLog($timestamp, $logmessage)
+    protected function writeLog($logmessage)
     {
         $logfile = fopen("shiplog.txt", "a");
-        $txt = $timestamp  . ": ";
+        $txt = Carbon::now()  . ": ";
         $txt .= $logmessage . "\n";
         fwrite($logfile, $txt);
         fclose($logfile);

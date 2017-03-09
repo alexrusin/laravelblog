@@ -12,6 +12,7 @@ namespace App;
      protected $key;
      protected $secret;
      protected $data;
+     protected $curlError;
 
      /*
       * This method sets value of the key
@@ -65,15 +66,30 @@ namespace App;
          curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 
          $result = curl_exec($curl);
+    
+         if (curl_error($curl)) 
+         {
+            $this->curlError="Error " . curl_errno($curl) . ": " . curl_error($curl);
+         }
 
-         // todo create function for reporting when result is false
-         // echo curl_getinfo($curl) . '<br/>';
-         //  echo curl_errno($curl) . '<br/>';
-         //  echo curl_error($curl) . '<br/>';
 
          curl_close($curl);
 
          return $result;
+
+     }
+
+     /**
+      * retrns curl error if there is an error 
+      * @return string
+      */
+
+     public function getCurlErr(){
+        if(!is_null($this->curlError)){
+            return $this->curlError;
+        } else {
+          return "No Curl Error was returned";
+        }
 
      }
 
