@@ -55,6 +55,7 @@ class ShipDownloaderCommand extends Command
         parent::__construct();
     }
 
+    
     /**
      * Execute the console command.
      *
@@ -70,7 +71,7 @@ class ShipDownloaderCommand extends Command
        
         $timeNow = Carbon::now();
         $timeBefore = Carbon::now();
-        $timeBefore = $timeBefore->subSeconds(3599);
+        $timeBefore = $timeBefore->subSeconds(3660);
        
 
         $url = "https://ssapi.shipstation.com/orders?createDateStart=";
@@ -83,6 +84,7 @@ class ShipDownloaderCommand extends Command
         $urlString = str_replace(" ", "T", $url);
         //dd($urlString);
 
+        $this->writeLog('Starting ');
         $orders=$reqObj->get($urlString);
               
        
