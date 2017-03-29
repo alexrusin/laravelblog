@@ -16,8 +16,13 @@ Route::get('/', function () {
 });
 
 Route::get('/tasks', 'TasksController@index');
-Route::get('/tasks/create', 'TasksController@create');
+Route::get('/tasks/create', 'TasksController@create')->name('taskform');
+Route::post('tasks/create', 'TasksController@submit')->name('tasksubmit');
 Route::get('/tasks/{task}', 'TasksController@show');
 Route::get('/blade', 'BladeTestController');
 Route::get('/merge', 'MergeController@index');
+Route::get('/tasks/update/{task}', 'TasksController@taskupdate')->name('taskupdate');
+Route::post('tasks/update', 'TasksController@update')->name('update');
+Route::get('tasks/destroy/{task}', 'TasksController@destroy')->name('tasks.destroy');
+
 

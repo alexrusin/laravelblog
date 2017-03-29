@@ -12,12 +12,14 @@
 
 		<div class="row">
 			 @include('alertmsg')
-			<h3>Create Task</h3>
+			<h3>Update Task</h3>
 		</div>
 		
-		{!! Form::open(['route' => 'tasksubmit', 'files' => true]) !!}
+		{!! Form::open(['route' => 'update', 'files' => true]) !!}
+		{!! Form::model($task) !!}
 		<div class="row">
 			<div class="col-md-3">
+			{!! Form::hidden('id') !!}
 			{!!Form::label('task_name', 'Task Name')!!}
 			</div>
 			<div class="col-md-9">
@@ -29,7 +31,7 @@
 			{!!Form::label('completed', 'Completed')!!}
 			</div>
 			<div class="col-md-9">
-			{!!Form::checkbox('completed', 1, false)!!}
+			{!!Form::checkbox('completed', 1, $task->completed==1?true:false)!!}
 			</div>
 		</div>
 		<div class="row">
@@ -51,7 +53,8 @@
     			@endif
             </div>
 			<div class="col-md-9">
-				{!!Form::submit('Create Task', ['class' => 'btn btn-primary my-submit'])!!}
+				<img src="{!!Storage::url($task->imageUrl)!!}" width="300" height="160"><br>
+				{!!Form::submit('Update Task', ['class' => 'btn btn-primary my-submit'])!!}
 				 
 			</div>
 		</div>
