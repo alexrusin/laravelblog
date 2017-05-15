@@ -1,5 +1,7 @@
 <?php
-
+// use App\Post;
+// $archives=Post::archives();
+// dd($archives);
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,7 +24,8 @@ Route::get('/tasks/{task}', 'TasksController@show');
 Route::get('/blade', 'BladeTestController');
 Route::get('/merge', 'MergeController@index');
 Route::get('/tasks/update/{task}', 'TasksController@taskupdate')->name('taskupdate');
-Route::post('tasks/update', 'TasksController@update')->name('update');
-Route::get('tasks/destroy/{task}', 'TasksController@destroy')->name('tasks.destroy');
+Route::post('/tasks/update', 'TasksController@update')->name('update');
+Route::get('/tasks/destroy/{task}', 'TasksController@destroy')->name('tasks.destroy');
+Route::get('/posts', 'PostsController@index')->name('posts.all');
 
 

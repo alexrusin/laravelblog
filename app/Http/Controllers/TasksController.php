@@ -35,7 +35,7 @@ class TasksController extends Controller
         } else {
             $comp=request('completed');
         }
-
+        
 
         $task = new Task();
         $task->task_name=request('task_name');

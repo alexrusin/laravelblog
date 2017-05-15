@@ -18,7 +18,32 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
+        'password' => $password ?: $password = bcrypt('password'),
         'remember_token' => str_random(10),
+    ];
+});
+
+// $factory->define(App\Post::class, function (Faker\Generator $faker) {
+    
+
+//     return [        
+//         'user_id' => $faker->numberBetween(1,6),
+//         'title' =>  $faker->sentence(),
+//         'body' => $faker->text($maxNbChars = 200), 
+//         "created_at" =>	$faker->dateTimeBetween('2012-01-01 01:01:01', 'now'),    
+        
+//     ];
+// });
+
+$factory->define(App\Post::class, function (Faker\Generator $faker) {
+  
+    return [        
+        'user_id' => function() {
+                return factory(App\User::class)->create()->id;
+        },
+        'title' =>  $faker->sentence,
+        'body' => $faker->paragraph, 
+        // "created_at" => $faker->dateTimeBetween('2012-01-01 01:01:01', 'now'),    
+        
     ];
 });
