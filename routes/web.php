@@ -26,6 +26,6 @@ Route::get('/merge', 'MergeController@index');
 Route::get('/tasks/update/{task}', 'TasksController@taskupdate')->name('taskupdate');
 Route::post('/tasks/update', 'TasksController@update')->name('update');
 Route::get('/tasks/destroy/{task}', 'TasksController@destroy')->name('tasks.destroy');
-Route::get('/posts', 'PostsController@index')->name('posts.all');
+Route::get('/posts', 'PostsController@index')->name('posts.index');
 
 
