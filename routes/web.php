@@ -27,5 +27,14 @@ Route::get('/tasks/update/{task}', 'TasksController@taskupdate')->name('taskupda
 Route::post('/tasks/update', 'TasksController@update')->name('update');
 Route::get('/tasks/destroy/{task}', 'TasksController@destroy')->name('tasks.destroy');
 Route::get('/posts', 'PostsController@index')->name('posts.index');
+Route::get('/ajax-example', 'MergeController@ajaxShow')->name('ajax.show');
+
+Route::get('/projects', 'ProjectsController@create')->name('projects.create');
+Route::post('/projects', 'ProjectsController@store')->name('projects.store');
+
+////api routes///
+Route::get('/api/skills', function() {
+	return ['Laravel', 'Vue', 'PHP', 'Javascript', 'Tooling'];
+});
 
 

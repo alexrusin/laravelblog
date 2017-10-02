@@ -13,10 +13,31 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+
+
 Vue.component('example', require('./components/Example.vue'));
 
+Vue.component('projects', require('./components/Projects.vue'));
+
+
 const app = new Vue({
-    el: '#app'
+    el: '#app', 
+
+    data: {
+    	skills: []
+    },
+
+    mounted() {
+
+    	axios.get('/api/skills')
+		  .then((response) => {
+		  	 this.skills = response.data;
+		  })
+		  .catch(function (error) {
+		    console.log(error);
+		  });
+
+    }
 });
 
 Vue.component('input-component', require('./components/Input.vue'));

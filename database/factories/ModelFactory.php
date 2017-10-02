@@ -23,17 +23,17 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-// $factory->define(App\Post::class, function (Faker\Generator $faker) {
+$factory->define(App\Post::class, function (Faker\Generator $faker) {
     
 
-//     return [        
-//         'user_id' => $faker->numberBetween(1,6),
-//         'title' =>  $faker->sentence(),
-//         'body' => $faker->text($maxNbChars = 200), 
-//         "created_at" =>	$faker->dateTimeBetween('2012-01-01 01:01:01', 'now'),    
+    return [        
+        'user_id' => factory(App\User::class)->create()->id,
+        'title' =>  $faker->sentence,
+        'body' => $faker->paragraph, 
+         
         
-//     ];
-// });
+    ];
+});
 
 $factory->define(App\Post::class, function (Faker\Generator $faker) {
   
@@ -44,6 +44,16 @@ $factory->define(App\Post::class, function (Faker\Generator $faker) {
         'title' =>  $faker->sentence,
         'body' => $faker->paragraph, 
         // "created_at" => $faker->dateTimeBetween('2012-01-01 01:01:01', 'now'),    
+        
+    ];
+});
+
+
+$factory->define(App\Team::class, function (Faker\Generator $faker) {
+  
+    return [        
+        'name' => $faker->name,
+        'size' => 5
         
     ];
 });

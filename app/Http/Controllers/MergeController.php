@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\RawMat;
+use App\User;
+use Illuminate\Http\Request;
 
 class MergeController extends Controller
 {
@@ -14,5 +15,13 @@ class MergeController extends Controller
     	
 
     	return view('merge.index', compact('mats'));
+    }
+
+    public function ajaxShow()
+    {
+    	
+
+
+    	return view('merge.ajax');
     }
 }
