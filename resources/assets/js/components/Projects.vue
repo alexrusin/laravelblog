@@ -1,36 +1,28 @@
 <script>
-   import {Errors} from '../utils/Errors.js';
+ 
+   import {Form} from '../utils/Form.js';
     export default {
        
         data() {
             return {
-               name: '',
-               description: '',
-               errors: new Errors()
+              
+              form: new Form({
+                 name: '',
+                 description: '',
+              }),
                 
             }
         },
 
-        methods: {
-        	onSubmit() {
-        		axios.post('/projects', {
-        			name: this.name,
-        			description: this.description
-        		})
-				  .then(this.onSuccess)
-				  .catch(this.onError);
-        	},
+         methods: {
+            onSubmit() {
+                this.form.submit('post', '/projects')
+                .then(data=> alert('handling it'))
+                .catch(errors =>{
+                });
+                
+            },
 
-        	onSuccess(response) {
-        		alert('Form submitted successfully');
-
-        		this.name = '';
-        		this.description = '';
-        	},
-
-        	onError(error) {
-        		this.errors.record(error.response.data);
-        	}
         }
        
     }
