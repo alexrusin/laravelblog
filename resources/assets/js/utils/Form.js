@@ -1,5 +1,5 @@
-import {Errors} from '../utils/Errors.js';
-export class Form {
+import Errors from '../utils/Errors.js';
+class Form {
 
 	constructor(data) {
 
@@ -69,3 +69,5 @@ export class Form {
 		this.errors.record(errors);
 	};
 };
+
+export default Form;

@@ -1,6 +1,6 @@
 <script>
  
-   import {Form} from '../utils/Form.js';
+   import Form from '../utils/Form.js';
     export default {
        
         data() {
