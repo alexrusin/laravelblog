@@ -37,4 +37,33 @@ Route::get('/api/skills', function() {
 	return ['Laravel', 'Vue', 'PHP', 'Javascript', 'Tooling'];
 });
 
+Route::get('/mail-jet', function(){
+
+	$mj = new \Mailjet\Client('9f7c1bc11fdff09b81671177f7b6fa7d', 'f9625756053a788a604a36a5bed6dcc3',
+	              true,['version' => 'v3.1']);
+	$body = [
+	    'Messages' => [
+	        [
+	            'From' => [
+	                'Email' => "alex@alexrusin.com",
+	                'Name' => "Mailjet Pilot"
+	            ],
+	            'To' => [
+	                [
+	                    'Email' => "alexrusin_2000@yahoo.com",
+	                    'Name' => "Alex Rusin"
+	                ]
+	            ],
+	            'Subject' => "Your email flight plan!",
+	            'TextPart' => "Dear passenger 1, welcome to Mailjet! May the delivery force be with you!",
+	            'HTMLPart' => "<h3>Dear passenger 1, welcome to Mailjet!</h3><br />May the delivery force be with you!"
+	        ]
+	    ]
+	];
+	$response = $mj->post(\Mailjet\Resources::$Email, ['body' => $body]);
+	dd($response->getData());
+
+});
+
+
 
