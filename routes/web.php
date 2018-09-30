@@ -65,5 +65,15 @@ Route::get('/mail-jet', function(){
 
 });
 
+//Modern CSS
+Route::get('/modern-css/part-one', 'ModernCssController@partOne');
+Route::get('/modern-css/card-design', function() {
+	return view('modern_css.card');
+});
+
+Route::get('/modern-css/card-tailwind', function() {
+	return view('modern_css.card-tailwind');
+});
+
 
 
