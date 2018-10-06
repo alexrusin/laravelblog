@@ -75,5 +75,13 @@ Route::get('/modern-css/card-tailwind', function() {
 	return view('modern_css.card-tailwind');
 });
 
+Route::get('/modern-css/flexbox-examples', function() {
+	return view('modern_css/flexbox-example');
+});
+
+Route::get('/modern-css/sticky-footer', function() {
+	return view('modern_css/sticky-footer');
+});
+
 
 
