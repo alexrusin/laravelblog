@@ -66,29 +66,37 @@ Route::get('/mail-jet', function(){
 });
 
 //Modern CSS
-Route::get('/modern-css/part-one', 'ModernCssController@partOne');
-Route::get('/modern-css/card-design', function() {
-	return view('modern_css.card');
+//
+Route::prefix('modern-css')->group(function(){
+	Route::get('part-one', 'ModernCssController@partOne');
+	Route::get('card-design', function() {
+		return view('modern_css.card');
+	});
+
+	Route::get('card-tailwind', function() {
+		return view('modern_css.card-tailwind');
+	});
+
+	Route::get('flexbox-examples', function() {
+		return view('modern_css/flexbox-example');
+	});
+
+	Route::get('sticky-footer', function() {
+		return view('modern_css/sticky-footer');
+	});
+
+	Route::get('faqs', function() {
+
+		$questions = App\Question::get();
+
+		return view('modern_css/faqs', compact('questions'));
+	});
+
+	Route::get('pricing-plans', function() {
+		return view('modern_css/pricing-plans');
+	});
 });
 
-Route::get('/modern-css/card-tailwind', function() {
-	return view('modern_css.card-tailwind');
-});
-
-Route::get('/modern-css/flexbox-examples', function() {
-	return view('modern_css/flexbox-example');
-});
-
-Route::get('/modern-css/sticky-footer', function() {
-	return view('modern_css/sticky-footer');
-});
-
-Route::get('/modern-css/faqs', function() {
-
-	$questions = App\Question::get();
-
-	return view('modern_css/faqs', compact('questions'));
-});
 
 
 
