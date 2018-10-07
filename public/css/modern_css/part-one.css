@@ -2,6 +2,10 @@ body {
 	font-family: 'Open Sans', sans-serif;
 }
 
+#app {
+	color:#5a5a5a;
+}
+
 a {
 	text-decoration: none;
 	color: #222222;

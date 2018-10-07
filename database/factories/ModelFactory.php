@@ -57,3 +57,10 @@ $factory->define(App\Team::class, function (Faker\Generator $faker) {
         
     ];
 });
+
+$factory->define(App\Question::class, function (Faker\Generator $faker) {
+    return [        
+        'question' =>  str_replace('.', '?', $faker->sentence),
+        'answer' => $faker->paragraph 
+    ];
+});

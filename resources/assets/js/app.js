@@ -19,28 +19,31 @@ Vue.component('example', require('./components/Example.vue'));
 
 Vue.component('projects', require('./components/Projects.vue'));
 
+Vue.component('input-component', require('./components/Input.vue'));
+Vue.component('question', require('./components/Question.vue'));
+
 
 const app = new Vue({
     el: '#app', 
 
-    data: {
-    	skills: []
-    },
+    // data: {
+    // 	skills: []
+    // },
 
-    mounted() {
+    // mounted() {
 
-    	axios.get('/api/skills')
-		  .then((response) => {
-		  	 this.skills = response.data;
-		  })
-		  .catch(function (error) {
-		    console.log(error);
-		  });
+    // 	axios.get('/api/skills')
+		  // .then((response) => {
+		  // 	 this.skills = response.data;
+		  // })
+		  // .catch(function (error) {
+		  //   console.log(error);
+		  // });
 
-    }
+    // }
 });
 
-Vue.component('input-component', require('./components/Input.vue'));
-const inp =  new Vue ({
-	el: '#inp'
-});
+
+// const inp =  new Vue ({
+// 	el: '#inp'
+// });

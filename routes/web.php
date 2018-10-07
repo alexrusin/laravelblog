@@ -83,5 +83,12 @@ Route::get('/modern-css/sticky-footer', function() {
 	return view('modern_css/sticky-footer');
 });
 
+Route::get('/modern-css/faqs', function() {
+
+	$questions = App\Question::get();
+
+	return view('modern_css/faqs', compact('questions'));
+});
+
 
 
