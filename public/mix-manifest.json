@@ -1,5 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
-    "/css/modern_css/pricing-plans.css": "/css/modern_css/pricing-plans.css"
+    "/css/modern_css/pricing-plans.css": "/css/modern_css/pricing-plans.css",
+    "/css/modern_css/call-to-action.css": "/css/modern_css/call-to-action.css"
 }

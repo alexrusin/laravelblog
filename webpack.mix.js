@@ -20,3 +20,10 @@ mix.sass('resources/assets/sass/pricing-plans.scss', 'public/css/modern_css')
     processCssUrls: false,
     postCss: [ tailwindcss('./tailwind.js') ]
   }).sourceMaps();
+
+mix.sass('resources/assets/sass/call-to-action.scss', 'public/css/modern_css')
+	.options({
+    processCssUrls: false,
+    postCss: [ tailwindcss('./tailwind.js') ]
+  }).sourceMaps();
+

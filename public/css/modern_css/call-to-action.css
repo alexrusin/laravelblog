@@ -6349,6 +6349,17 @@ table {
   z-index: auto;
 }
 
+.signup-banner {
+  background-image: radial-gradient(circle at 0 100%, #6585b8, #2e4469);
+}
+
+.container {
+  height: 600px;
+  background-image: url("http://via.placeholder.com/250x150"), url("http://via.placeholder.com/150x50"), url("http://via.placeholder.com/50x150");
+  background-repeat: no-repeat;
+  background-position: 0 100%, 0 0, 100% 100%;
+}
+
 @media (min-width: 576px) {
   .sm\:list-reset {
     list-style: none;

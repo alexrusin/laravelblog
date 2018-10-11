@@ -95,6 +95,10 @@ Route::prefix('modern-css')->group(function(){
 	Route::get('pricing-plans', function() {
 		return view('modern_css/pricing-plans');
 	});
+
+	Route::get('call-to-action', function() {
+		return view('modern_css/call-to-action');
+	});
 });
 
 
