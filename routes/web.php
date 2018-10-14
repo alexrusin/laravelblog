@@ -99,6 +99,14 @@ Route::prefix('modern-css')->group(function(){
 	Route::get('call-to-action', function() {
 		return view('modern_css/call-to-action');
 	});
+
+	Route::get('responsive-demo', function() {
+		return view('modern_css/responsive-demo');
+	});
+
+	Route::get('mobile-first', function() {
+		return view('modern_css/mobile-first');
+	});
 });
 
 

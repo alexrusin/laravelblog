@@ -1,4 +1,14 @@
 @tailwind preflight;
+
+html {
+	font-size: 12px;
+
+	@screen lg {
+			font-size:16px;
+	}
+}
+
+
 @tailwind components;
 .btn {
 	@apply .bg-grey .text-black .no-underline .uppercase .py-3 .px-6 .rounded-full .text-xs
